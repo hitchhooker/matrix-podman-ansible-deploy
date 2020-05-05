@@ -16,4 +16,4 @@
     name:
       - docker
     state: latest
-  when: matrix_docker_installation_enabled|bool
+  when: matrix_podman_installation_enabled|bool

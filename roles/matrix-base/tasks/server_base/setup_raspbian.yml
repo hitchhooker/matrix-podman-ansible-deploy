@@ -15,14 +15,14 @@
     state: present
   register: add_repository_key
   ignore_errors: true
-  when: matrix_docker_installation_enabled|bool and matrix_docker_package_name == 'podman'
+  when: matrix_podman_installation_enabled|bool and matrix_podman_package_name == 'podman'
 
 - name: Ensure Docker repository is enabled
   apt_repository:
     repo: "deb [arch=armhf] https://download.docker.com/linux/raspbian {{ ansible_distribution_release }} stable"
     state: present
     update_cache: yes
-  when: matrix_docker_installation_enabled|bool and matrix_docker_package_name == 'podman'
+  when: matrix_podman_installation_enabled|bool and matrix_podman_package_name == 'podman'
 
 - name: Ensure APT packages are installed
   apt:
@@ -36,6 +36,6 @@
 - name: Ensure Docker is installed
   apt:
     name:
-      - "{{ matrix_docker_package_name }}"
+      - "{{ matrix_podman_package_name }}"
     state: latest
-  when: matrix_docker_installation_enabled|bool
+  when: matrix_podman_installation_enabled|bool
