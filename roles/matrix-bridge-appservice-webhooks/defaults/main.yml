@@ -36,7 +36,7 @@ matrix_appservice_webhooks_appservice_url: 'http://matrix-appservice-webhooks'
 matrix_appservice_webhooks_container_extra_arguments: []
 
 # List of systemd services that matrix-appservice-webhooks.service depends on.
-matrix_appservice_webhooks_systemd_required_services_list: ['docker.service', 'matrix-synapse.service']
+matrix_appservice_webhooks_systemd_required_services_list: ['podman.service', 'matrix-synapse.service']
 
 # List of systemd services that matrix-appservice-webhooks.service wants
 matrix_appservice_webhooks_systemd_wanted_services_list: []

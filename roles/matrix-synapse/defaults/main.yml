@@ -54,7 +54,7 @@ matrix_synapse_container_manhole_api_host_bind_port: ''
 matrix_synapse_container_extra_arguments: []
 
 # List of systemd services that matrix-synapse.service depends on
-matrix_synapse_systemd_required_services_list: ['docker.service']
+matrix_synapse_systemd_required_services_list: ['podman.service']
 
 # List of systemd services that matrix-synapse.service wants
 matrix_synapse_systemd_wanted_services_list: []

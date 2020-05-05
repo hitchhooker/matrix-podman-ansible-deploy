@@ -11,7 +11,7 @@ matrix_nginx_proxy_data_path: "{{ matrix_nginx_proxy_base_path }}/data"
 matrix_nginx_proxy_confd_path: "{{ matrix_nginx_proxy_base_path }}/conf.d"
 
 # List of systemd services that matrix-nginx-proxy.service depends on
-matrix_nginx_proxy_systemd_required_services_list: ['docker.service']
+matrix_nginx_proxy_systemd_required_services_list: ['podman.service']
 
 # List of systemd services that matrix-nginx-proxy.service wants
 matrix_nginx_proxy_systemd_wanted_services_list: []

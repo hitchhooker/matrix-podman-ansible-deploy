@@ -35,7 +35,7 @@ matrix_mautrix_telegram_container_http_host_bind_port: ''
 matrix_mautrix_telegram_container_extra_arguments: []
 
 # List of systemd services that matrix-mautrix-telegram.service depends on.
-matrix_mautrix_telegram_systemd_required_services_list: ['docker.service']
+matrix_mautrix_telegram_systemd_required_services_list: ['podman.service']
 
 # List of systemd services that matrix-mautrix-telegram.service wants
 matrix_mautrix_telegram_systemd_wanted_services_list: []

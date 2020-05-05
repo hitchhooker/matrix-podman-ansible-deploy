@@ -24,7 +24,7 @@ matrix_mautrix_hangouts_appservice_address: 'http://matrix-mautrix-hangouts:8080
 matrix_mautrix_hangouts_container_extra_arguments: []
 
 # List of systemd services that matrix-mautrix-hangouts.service depends on.
-matrix_mautrix_hangouts_systemd_required_services_list: ['docker.service']
+matrix_mautrix_hangouts_systemd_required_services_list: ['podman.service']
 
 # List of systemd services that matrix-mautrix-hangouts.service wants
 matrix_mautrix_hangouts_systemd_wanted_services_list: []
