@@ -41,12 +41,11 @@
 - name: Ensure Mautrix Hangouts Docker image is built
   podman_image:
     name: "{{ matrix_mautrix_hangouts_podman_image }}"
-    # source: build
-    # force_source#: yes
+    force: yes
+    path: "{{ matrix_mautrix_hangouts_podman_src_files_path }}"
+    pull: yes
     build:
-      dockerfile: Dockerfile
-      path: "{{ matrix_mautrix_hangouts_podman_src_files_path }}"
-      pull: yes
+      format: docker
   when: "matrix_mautrix_hangouts_enabled|bool and matrix_mautrix_hangouts_container_image_self_build and matrix_mautrix_hangouts_git_pull_results.changed"
 
 - name: Check if an old database file already exists
