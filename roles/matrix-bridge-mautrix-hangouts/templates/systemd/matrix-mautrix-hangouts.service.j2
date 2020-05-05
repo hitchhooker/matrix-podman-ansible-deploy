@@ -19,7 +19,7 @@ ExecStartPre=/usr/bin/docker run --rm --name matrix-mautrix-hangouts-db \
 			--cap-drop=ALL \
 			-v {{ matrix_mautrix_hangouts_config_path }}:/config:z \
 			-v {{ matrix_mautrix_hangouts_data_path }}:/data:z \
-			{{ matrix_mautrix_hangouts_docker_image }} \
+			{{ matrix_mautrix_hangouts_podman_image }} \
 			alembic -x config=/config/config.yaml upgrade head
 
 # Intentional delay, so that the homeserver (we likely depend on) can manage to start.
@@ -35,7 +35,7 @@ ExecStart=/usr/bin/docker run --rm --name matrix-mautrix-hangouts \
 			{% for arg in matrix_mautrix_hangouts_container_extra_arguments %}
 			{{ arg }} \
 			{% endfor %}
-			{{ matrix_mautrix_hangouts_docker_image }} \
+			{{ matrix_mautrix_hangouts_podman_image }} \
 			python3 -m mautrix_hangouts -c /config/config.yaml
 
 ExecStop=-/usr/bin/docker kill matrix-mautrix-hangouts

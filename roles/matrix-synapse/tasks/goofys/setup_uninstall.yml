@@ -28,6 +28,6 @@
     state: absent
 
 - name: Ensure Goofys Docker image doesn't exist
-  docker_image:
-    name: "{{ matrix_s3_goofys_docker_image }}"
+  podman_image:
+    name: "{{ matrix_s3_goofys_podman_image }}"
     state: absent

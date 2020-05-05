@@ -24,7 +24,7 @@
     -p {{ matrix_ssl_lets_encrypt_container_standalone_http_host_bind_port }}:8080
     -v {{ matrix_ssl_config_dir_path }}:/etc/letsencrypt
     -v {{ matrix_ssl_log_dir_path }}:/var/log/letsencrypt
-    {{ matrix_ssl_lets_encrypt_certbot_docker_image }}
+    {{ matrix_ssl_lets_encrypt_certbot_podman_image }}
     certonly
     --non-interactive
     --work-dir=/tmp
@@ -52,7 +52,7 @@
     --network={{ matrix_docker_network }}
     -v {{ matrix_ssl_config_dir_path }}:/etc/letsencrypt
     -v {{ matrix_ssl_log_dir_path }}:/var/log/letsencrypt
-    {{ matrix_ssl_lets_encrypt_certbot_docker_image }}
+    {{ matrix_ssl_lets_encrypt_certbot_podman_image }}
     certonly
     --non-interactive
     --work-dir=/tmp

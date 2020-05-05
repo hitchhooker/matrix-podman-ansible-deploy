@@ -18,11 +18,11 @@
   when: matrix_jitsi_enabled|bool and item.when
 
 - name: Ensure jitsi-web Docker image is pulled
-  docker_image:
-    name: "{{ matrix_jitsi_web_docker_image }}"
+  podman_image:
+    name: "{{ matrix_jitsi_web_podman_image }}"
     source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
-    force_source: "{{ matrix_jitsi_web_docker_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
-    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_jitsi_web_docker_image_force_pull }}"
+    force_source: "{{ matrix_jitsi_web_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_jitsi_web_podman_image_force_pull }}"
   when: matrix_jitsi_enabled|bool
 
 - name: Ensure jitsi-web environment variables file created
@@ -91,7 +91,7 @@
   when: "not matrix_jitsi_enabled|bool"
 
 - name: Ensure jitsi-web Docker image doesn't exist
-  docker_image:
-    name: "{{ matrix_jitsi_web_docker_image }}"
+  podman_image:
+    name: "{{ matrix_jitsi_web_podman_image }}"
     state: absent
   when: "not matrix_jitsi_enabled|bool"

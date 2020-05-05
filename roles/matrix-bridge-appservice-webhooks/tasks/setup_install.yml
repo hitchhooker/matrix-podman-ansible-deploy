@@ -1,11 +1,11 @@
 ---
 
 - name: Ensure Appservice webhooks image is pulled
-  docker_image:
-    name: "{{ matrix_appservice_webhooks_docker_image }}"
+  podman_image:
+    name: "{{ matrix_appservice_webhooks_podman_image }}"
     source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
-    force_source: "{{ matrix_appservice_webhooks_docker_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
-    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_appservice_webhooks_docker_image_force_pull }}"
+    force_source: "{{ matrix_appservice_webhooks_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_appservice_webhooks_podman_image_force_pull }}"
 
 - name: Ensure AppService webhooks paths exist
   file:

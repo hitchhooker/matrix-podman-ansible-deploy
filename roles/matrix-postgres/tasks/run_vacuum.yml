@@ -50,7 +50,7 @@
       --cap-drop=ALL
       --network={{ matrix_docker_network }}
       --env-file={{ matrix_postgres_base_path }}/env-postgres-psql
-      {{ matrix_postgres_docker_image_latest }}
+      {{ matrix_postgres_podman_image_latest }}
       psql -v ON_ERROR_STOP=1 -h matrix-postgres {{ matrix_synapse_database_database }} -c 'VACUUM FULL VERBOSE'
 
 - name: Note about Postgres vacuum alternative

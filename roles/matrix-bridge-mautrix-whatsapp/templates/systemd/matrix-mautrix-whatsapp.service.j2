@@ -28,7 +28,7 @@ ExecStart=/usr/bin/docker run --rm --name matrix-mautrix-whatsapp \
 			{% for arg in matrix_mautrix_whatsapp_container_extra_arguments %}
 			{{ arg }} \
 			{% endfor %}
-			{{ matrix_mautrix_whatsapp_docker_image }} \
+			{{ matrix_mautrix_whatsapp_podman_image }} \
 			/usr/bin/mautrix-whatsapp -c /config/config.yaml -r /config/registration.yaml
 
 ExecStop=-/usr/bin/docker kill matrix-mautrix-whatsapp

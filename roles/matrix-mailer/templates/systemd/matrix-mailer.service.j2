@@ -22,7 +22,7 @@ ExecStart=/usr/bin/docker run --rm --name matrix-mailer \
 			{% for arg in matrix_mailer_container_extra_arguments %}
 			{{ arg }} \
 			{% endfor %}
-			{{ matrix_mailer_docker_image }}
+			{{ matrix_mailer_podman_image }}
 
 ExecStop=-/usr/bin/docker kill matrix-mailer
 ExecStop=-/usr/bin/docker rm matrix-mailer

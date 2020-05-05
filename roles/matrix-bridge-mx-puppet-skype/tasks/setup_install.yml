@@ -9,11 +9,11 @@
   when: "matrix_synapse_role_executed|default(False)"
 
 - name: Ensure MX Puppet Skype image is pulled
-  docker_image:
-    name: "{{ matrix_mx_puppet_skype_docker_image }}"
+  podman_image:
+    name: "{{ matrix_mx_puppet_skype_podman_image }}"
     source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
-    force_source: "{{ matrix_mx_puppet_skype_docker_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
-    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mx_puppet_skype_docker_image_force_pull }}"
+    force_source: "{{ matrix_mx_puppet_skype_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mx_puppet_skype_podman_image_force_pull }}"
   when: matrix_mx_puppet_skype_enabled|bool and not matrix_mx_puppet_skype_container_image_self_build
 
 - name: Ensure MX Puppet Skype paths exist
@@ -39,8 +39,8 @@
   when: "matrix_mx_puppet_skype_enabled|bool and matrix_mx_puppet_skype_container_image_self_build"
 
 - name: Ensure MX Puppet Skype Docker image is built
-  docker_image:
-    name: "{{ matrix_mx_puppet_skype_docker_image }}"
+  podman_image:
+    name: "{{ matrix_mx_puppet_skype_podman_image }}"
     source: build
     force_source: yes
     build:

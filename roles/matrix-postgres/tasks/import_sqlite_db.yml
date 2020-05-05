@@ -81,5 +81,5 @@
     -v {{ matrix_synapse_config_dir_path }}:/data
     -v {{ matrix_synapse_run_path }}:/matrix-run
     -v {{ server_path_homeserver_db }}:/{{ server_path_homeserver_db|basename }}:ro
-    {{ matrix_synapse_docker_image }}
+    {{ matrix_synapse_podman_image }}
     /usr/local/bin/synapse_port_db --sqlite-database /{{ server_path_homeserver_db|basename }} --postgres-config /data/homeserver.yaml

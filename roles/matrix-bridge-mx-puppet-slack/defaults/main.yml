@@ -5,8 +5,8 @@ matrix_mx_puppet_slack_enabled: true
 
 matrix_mx_puppet_slack_container_image_self_build: false
 
-matrix_mx_puppet_slack_docker_image: "sorunome/mx-puppet-slack:latest"
-matrix_mx_puppet_slack_docker_image_force_pull: "{{ matrix_mx_puppet_slack_docker_image.endswith(':latest') }}"
+matrix_mx_puppet_slack_podman_image: "sorunome/mx-puppet-slack:latest"
+matrix_mx_puppet_slack_podman_image_force_pull: "{{ matrix_mx_puppet_slack_podman_image.endswith(':latest') }}"
 
 matrix_mx_puppet_slack_base_path: "{{ matrix_base_data_path }}/mx-puppet-slack"
 matrix_mx_puppet_slack_config_path: "{{ matrix_mx_puppet_slack_base_path }}/config"

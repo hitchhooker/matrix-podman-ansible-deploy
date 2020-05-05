@@ -22,13 +22,13 @@
   git:
     repo: https://github.com/matrix-org/synapse.git
     dest: "{{ matrix_synapse_docker_src_files_path }}"
-    version: "{{ matrix_synapse_docker_image.split(':')[1] }}"
+    version: "{{ matrix_synapse_podman_image.split(':')[1] }}"
     force: "yes"
   when: "matrix_synapse_container_image_self_build"
 
 - name: Ensure Synapse Docker image is built
-  docker_image:
-    name: "{{ matrix_synapse_docker_image }}"
+  podman_image:
+    name: "{{ matrix_synapse_podman_image }}"
     source: build
     build:
       dockerfile: docker/Dockerfile
@@ -37,11 +37,11 @@
   when: "matrix_synapse_container_image_self_build"
 
 - name: Ensure Synapse Docker image is pulled
-  docker_image:
-    name: "{{ matrix_synapse_docker_image }}"
+  podman_image:
+    name: "{{ matrix_synapse_podman_image }}"
     source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
-    force_source: "{{ matrix_synapse_docker_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
-    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_synapse_docker_image_force_pull }}"
+    force_source: "{{ matrix_synapse_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_synapse_podman_image_force_pull }}"
   when: "not matrix_synapse_container_image_self_build"
 
 - name: Check if a Synapse signing key exists
@@ -69,7 +69,7 @@
     -e SYNAPSE_CONFIG_PATH=/data/homeserver.yaml
     -e SYNAPSE_SERVER_NAME={{ matrix_server_fqn_matrix }}
     -e SYNAPSE_REPORT_STATS=no
-    {{ matrix_synapse_docker_image }}
+    {{ matrix_synapse_podman_image }}
     generate
   when: "not matrix_synapse_signing_key_stat.stat.exists"
 

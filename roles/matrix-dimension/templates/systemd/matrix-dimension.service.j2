@@ -24,7 +24,7 @@ ExecStart=/usr/bin/docker run --rm --name matrix-dimension \
 			{% for arg in matrix_dimension_container_extra_arguments %}
 			{{ arg }} \
 			{% endfor %}
-			{{ matrix_dimension_docker_image }}
+			{{ matrix_dimension_podman_image }}
 
 ExecStop=-/usr/bin/docker kill matrix-dimension
 ExecStop=-/usr/bin/docker rm matrix-dimension

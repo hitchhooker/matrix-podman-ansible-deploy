@@ -5,8 +5,8 @@ matrix_mx_puppet_skype_enabled: true
 
 matrix_mx_puppet_skype_container_image_self_build: false
 
-matrix_mx_puppet_skype_docker_image: "sorunome/mx-puppet-skype:latest"
-matrix_mx_puppet_skype_docker_image_force_pull: "{{ matrix_mx_puppet_skype_docker_image.endswith(':latest') }}"
+matrix_mx_puppet_skype_podman_image: "sorunome/mx-puppet-skype:latest"
+matrix_mx_puppet_skype_podman_image_force_pull: "{{ matrix_mx_puppet_skype_podman_image.endswith(':latest') }}"
 
 matrix_mx_puppet_skype_base_path: "{{ matrix_base_data_path }}/mx-puppet-skype"
 matrix_mx_puppet_skype_config_path: "{{ matrix_mx_puppet_skype_base_path }}/config"

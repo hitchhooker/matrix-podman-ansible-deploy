@@ -21,11 +21,11 @@
   when: matrix_mailer_enabled|bool
 
 - name: Ensure mailer image is pulled
-  docker_image:
-    name: "{{ matrix_mailer_docker_image }}"
+  podman_image:
+    name: "{{ matrix_mailer_podman_image }}"
     source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
-    force_source: "{{ matrix_mailer_docker_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
-    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mailer_docker_image_force_pull }}"
+    force_source: "{{ matrix_mailer_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mailer_podman_image_force_pull }}"
   when: matrix_mailer_enabled|bool
 
 - name: Ensure matrix-mailer.service installed
@@ -77,7 +77,7 @@
   when: "not matrix_mailer_enabled|bool"
 
 - name: Ensure mailer Docker image doesn't exist
-  docker_image:
-    name: "{{ matrix_mailer_docker_image }}"
+  podman_image:
+    name: "{{ matrix_mailer_podman_image }}"
     state: absent
   when: "not matrix_mailer_enabled|bool"

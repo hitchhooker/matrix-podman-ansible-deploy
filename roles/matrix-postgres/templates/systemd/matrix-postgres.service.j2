@@ -26,7 +26,7 @@ ExecStart=/usr/bin/docker run --rm --name matrix-postgres \
 			{% for arg in matrix_postgres_container_extra_arguments %}
 			{{ arg }} \
 			{% endfor %}
-			{{ matrix_postgres_docker_image_to_use }}
+			{{ matrix_postgres_podman_image_to_use }}
 
 ExecStop=-/usr/bin/docker stop matrix-postgres
 ExecStop=-/usr/bin/docker rm matrix-postgres

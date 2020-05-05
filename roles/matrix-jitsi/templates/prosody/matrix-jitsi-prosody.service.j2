@@ -19,7 +19,7 @@ ExecStart=/usr/bin/docker run --rm --name matrix-jitsi-prosody \
 			{% for arg in matrix_jitsi_prosody_container_extra_arguments %}
 			{{ arg }} \
 			{% endfor %}
-			{{ matrix_jitsi_prosody_docker_image }}
+			{{ matrix_jitsi_prosody_podman_image }}
 
 ExecStop=-/usr/bin/docker kill matrix-jitsi-prosody
 ExecStop=-/usr/bin/docker rm matrix-jitsi-prosody

@@ -5,8 +5,8 @@ matrix_synapse_enabled: true
 
 matrix_synapse_container_image_self_build: false
 
-matrix_synapse_docker_image: "matrixdotorg/synapse:v1.12.4"
-matrix_synapse_docker_image_force_pull: "{{ matrix_synapse_docker_image.endswith(':latest') }}"
+matrix_synapse_podman_image: "matrixdotorg/synapse:v1.12.4"
+matrix_synapse_podman_image_force_pull: "{{ matrix_synapse_podman_image.endswith(':latest') }}"
 
 matrix_synapse_base_path: "{{ matrix_base_data_path }}/synapse"
 matrix_synapse_docker_src_files_path: "{{ matrix_synapse_base_path }}/docker-src"
@@ -324,8 +324,8 @@ matrix_synapse_ext_spam_checker_synapse_simple_antispam_config_blocked_homeserve
 
 matrix_s3_media_store_enabled: false
 matrix_s3_media_store_custom_endpoint_enabled: false
-matrix_s3_goofys_docker_image: "ewoutp/goofys:latest"
-matrix_s3_goofys_docker_image_force_pull: "{{ matrix_s3_goofys_docker_image.endswith(':latest') }}"
+matrix_s3_goofys_podman_image: "ewoutp/goofys:latest"
+matrix_s3_goofys_podman_image_force_pull: "{{ matrix_s3_goofys_podman_image.endswith(':latest') }}"
 matrix_s3_media_store_custom_endpoint: "your-custom-endpoint"
 matrix_s3_media_store_bucket_name: "your-bucket-name"
 matrix_s3_media_store_aws_access_key: "your-aws-access-key"

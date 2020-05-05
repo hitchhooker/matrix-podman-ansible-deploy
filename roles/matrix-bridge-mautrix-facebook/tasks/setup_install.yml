@@ -9,11 +9,11 @@
   when: "matrix_synapse_role_executed|default(False)"
 
 - name: Ensure Mautrix Facebook image is pulled
-  docker_image:
-    name: "{{ matrix_mautrix_facebook_docker_image }}"
+  podman_image:
+    name: "{{ matrix_mautrix_facebook_podman_image }}"
     source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
-    force_source: "{{ matrix_mautrix_facebook_docker_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
-    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mautrix_facebook_docker_image_force_pull }}"
+    force_source: "{{ matrix_mautrix_facebook_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mautrix_facebook_podman_image_force_pull }}"
   when: matrix_mautrix_facebook_enabled|bool and not matrix_mautrix_facebook_container_image_self_build
 
 - name: Ensure Mautrix Facebook paths exist
@@ -34,14 +34,14 @@
   git:
     repo: https://github.com/tulir/mautrix-facebook.git
     dest: "{{ matrix_mautrix_facebook_docker_src_files_path }}"
-#    version: "{{ matrix_coturn_docker_image.split(':')[1] }}"
+#    version: "{{ matrix_coturn_podman_image.split(':')[1] }}"
     force: "yes"
   register: matrix_mautrix_facebook_git_pull_results
   when: "matrix_mautrix_facebook_enabled|bool and matrix_mautrix_facebook_container_image_self_build"
 
 - name: Ensure Mautrix Facebook Docker image is built
-  docker_image:
-    name: "{{ matrix_mautrix_facebook_docker_image }}"
+  podman_image:
+    name: "{{ matrix_mautrix_facebook_podman_image }}"
     source: build
     force_source: yes
     build:

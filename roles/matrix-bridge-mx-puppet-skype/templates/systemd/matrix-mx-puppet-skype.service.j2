@@ -29,7 +29,7 @@ ExecStart=/usr/bin/docker run --rm --name matrix-mx-puppet-skype \
 			{% for arg in matrix_mx_puppet_skype_container_extra_arguments %}
 			{{ arg }} \
 			{% endfor %}
-			{{ matrix_mx_puppet_skype_docker_image }}
+			{{ matrix_mx_puppet_skype_podman_image }}
 
 ExecStop=-/usr/bin/docker kill matrix-mx-puppet-skype
 ExecStop=-/usr/bin/docker rm matrix-mx-puppet-skype

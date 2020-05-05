@@ -8,7 +8,7 @@
     matrix_postgres_detection_pg_version_path: "{{ matrix_postgres_data_path }}/PG_VERSION"
     matrix_postgres_detected_existing: false
     matrix_postgres_detected_version: ""
-    matrix_postgres_detected_version_corresponding_docker_image: ""
+    matrix_postgres_detected_version_corresponding_podman_image: ""
 
 - name: Determine existing Postgres version (check PG_VERSION file)
   stat:
@@ -32,20 +32,20 @@
 
 - name: Determine corresponding Docker image to detected version (assume default of latest)
   set_fact:
-    matrix_postgres_detected_version_corresponding_docker_image: "{{ matrix_postgres_docker_image_latest }}"
+    matrix_postgres_detected_version_corresponding_podman_image: "{{ matrix_postgres_podman_image_latest }}"
   when: "matrix_postgres_detected_version != ''"
 
 - name: Determine corresponding Docker image to detected version (use 9.x, if detected)
   set_fact:
-    matrix_postgres_detected_version_corresponding_docker_image: "{{ matrix_postgres_docker_image_v9 }}"
+    matrix_postgres_detected_version_corresponding_podman_image: "{{ matrix_postgres_podman_image_v9 }}"
   when: "matrix_postgres_detected_version.startswith('9.')"
 
 - name: Determine corresponding Docker image to detected version (use 10.x, if detected)
   set_fact:
-    matrix_postgres_detected_version_corresponding_docker_image: "{{ matrix_postgres_docker_image_v10 }}"
+    matrix_postgres_detected_version_corresponding_podman_image: "{{ matrix_postgres_podman_image_v10 }}"
   when: "matrix_postgres_detected_version == '10' or matrix_postgres_detected_version.startswith('10.')"
 
 - name: Determine corresponding Docker image to detected version (use 11.x, if detected)
   set_fact:
-    matrix_postgres_detected_version_corresponding_docker_image: "{{ matrix_postgres_docker_image_v11 }}"
+    matrix_postgres_detected_version_corresponding_podman_image: "{{ matrix_postgres_podman_image_v11 }}"
   when: "matrix_postgres_detected_version == '11' or matrix_postgres_detected_version.startswith('11.')"

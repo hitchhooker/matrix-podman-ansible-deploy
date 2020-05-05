@@ -15,21 +15,21 @@
 #
 # Upgrading is supposed to be performed separately and explicitly (see `upgrade_postgres.yml`).
 - set_fact:
-    matrix_postgres_docker_image_to_use: "{{ matrix_postgres_docker_image_latest if matrix_postgres_detected_version_corresponding_docker_image == '' else matrix_postgres_detected_version_corresponding_docker_image }}"
+    matrix_postgres_podman_image_to_use: "{{ matrix_postgres_podman_image_latest if matrix_postgres_detected_version_corresponding_podman_image == '' else matrix_postgres_detected_version_corresponding_podman_image }}"
   when: matrix_postgres_enabled|bool
 
 - name: Warn if on an old version of Postgres
   debug:
-    msg: "NOTE: Your setup is on an old Postgres version ({{ matrix_postgres_docker_image_to_use }}), while {{ matrix_postgres_docker_image_latest }} is supported. You can upgrade using --tags=upgrade-postgres"
-  when: "matrix_postgres_enabled|bool and matrix_postgres_docker_image_to_use != matrix_postgres_docker_image_latest"
+    msg: "NOTE: Your setup is on an old Postgres version ({{ matrix_postgres_podman_image_to_use }}), while {{ matrix_postgres_podman_image_latest }} is supported. You can upgrade using --tags=upgrade-postgres"
+  when: "matrix_postgres_enabled|bool and matrix_postgres_podman_image_to_use != matrix_postgres_podman_image_latest"
 
 # Even if we don't run the internal server, we still need this for running the CLI
 - name: Ensure postgres Docker image is pulled
-  docker_image:
-    name: "{{ matrix_postgres_docker_image_to_use }}"
+  podman_image:
+    name: "{{ matrix_postgres_podman_image_to_use }}"
     source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
-    force_source: "{{ matrix_postgres_docker_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
-    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_postgres_docker_image_force_pull }}"
+    force_source: "{{ matrix_postgres_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_postgres_podman_image_force_pull }}"
   when: matrix_postgres_enabled|bool
 
 - name: Ensure Postgres paths exist

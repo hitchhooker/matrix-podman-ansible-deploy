@@ -19,8 +19,8 @@ matrix_corporal_container_extra_arguments: []
 # List of systemd services that matrix-corporal.service depends on
 matrix_corporal_systemd_required_services_list: ['docker.service']
 
-matrix_corporal_docker_image: "devture/matrix-corporal:1.9.0"
-matrix_corporal_docker_image_force_pull: "{{ matrix_corporal_docker_image.endswith(':latest') }}"
+matrix_corporal_podman_image: "devture/matrix-corporal:1.9.0"
+matrix_corporal_podman_image_force_pull: "{{ matrix_corporal_podman_image.endswith(':latest') }}"
 
 matrix_corporal_base_path: "{{ matrix_base_data_path }}/corporal"
 matrix_corporal_config_dir_path: "{{ matrix_corporal_base_path }}/config"

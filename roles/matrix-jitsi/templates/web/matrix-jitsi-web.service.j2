@@ -23,7 +23,7 @@ ExecStart=/usr/bin/docker run --rm --name matrix-jitsi-web \
 			{% for arg in matrix_jitsi_web_container_extra_arguments %}
 			{{ arg }} \
 			{% endfor %}
-			{{ matrix_jitsi_web_docker_image }}
+			{{ matrix_jitsi_web_podman_image }}
 
 ExecStop=-/usr/bin/docker kill matrix-jitsi-web
 ExecStop=-/usr/bin/docker rm matrix-jitsi-web

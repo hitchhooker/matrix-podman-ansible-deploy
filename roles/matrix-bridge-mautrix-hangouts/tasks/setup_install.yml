@@ -9,11 +9,11 @@
   when: "matrix_synapse_role_executed|default(False)"
 
 - name: Ensure Mautrix Hangouts image is pulled
-  docker_image:
-    name: "{{ matrix_mautrix_hangouts_docker_image }}"
+  podman_image:
+    name: "{{ matrix_mautrix_hangouts_podman_image }}"
     source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
-    force_source: "{{ matrix_mautrix_hangouts_docker_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
-    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mautrix_hangouts_docker_image_force_pull }}"
+    force_source: "{{ matrix_mautrix_hangouts_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
+    force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mautrix_hangouts_podman_image_force_pull }}"
   when: matrix_mautrix_hangouts_enabled|bool and not matrix_mautrix_hangouts_container_image_self_build
 
 - name: Ensure Mautrix Hangouts paths exist
@@ -39,8 +39,8 @@
   when: "matrix_mautrix_hangouts_enabled|bool and matrix_mautrix_hangouts_container_image_self_build"
 
 - name: Ensure Mautrix Hangouts Docker image is built
-  docker_image:
-    name: "{{ matrix_mautrix_hangouts_docker_image }}"
+  podman_image:
+    name: "{{ matrix_mautrix_hangouts_podman_image }}"
     source: build
     force_source: yes
     build:

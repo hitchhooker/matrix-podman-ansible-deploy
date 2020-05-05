@@ -6,7 +6,7 @@
     matrix_systemd_services_list: "{{ matrix_systemd_services_list + ['matrix-goofys'] }}"
   when: matrix_s3_media_store_enabled|bool
 
-# ansible lower than 2.8, does not support docker_image build parameters
+# ansible lower than 2.8, does not support podman_image build parameters
 # for self buildig it is explicitly needed, so we rather fail here
 - name: Fail if running on Ansible lower than 2.8 and trying self building
   fail:
