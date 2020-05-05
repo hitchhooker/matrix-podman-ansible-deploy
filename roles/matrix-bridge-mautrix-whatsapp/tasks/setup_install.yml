@@ -11,7 +11,7 @@
 - name: Ensure Mautrix Whatsapp image is pulled
   podman_image:
     name: "{{ matrix_mautrix_whatsapp_podman_image }}"
-    source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
+    pull: "{{ 'yes' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
     # force_source#: "{{ matrix_mautrix_whatsapp_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
     force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_mautrix_whatsapp_podman_image_force_pull }}"
 

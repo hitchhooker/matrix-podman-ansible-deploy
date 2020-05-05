@@ -29,7 +29,6 @@
 - name: Ensure Synapse Docker image is built
   podman_image:
     name: "{{ matrix_synapse_podman_image }}"
-    source: build
     build:
       dockerfile: docker/Dockerfile
       path: "{{ matrix_synapse_docker_src_files_path }}"
@@ -39,7 +38,7 @@
 - name: Ensure Synapse Docker image is pulled
   podman_image:
     name: "{{ matrix_synapse_podman_image }}"
-    source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
+    pull: "{{ 'yes' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
     # force_source#: "{{ matrix_synapse_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
     force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_synapse_podman_image_force_pull }}"
   when: "not matrix_synapse_container_image_self_build"

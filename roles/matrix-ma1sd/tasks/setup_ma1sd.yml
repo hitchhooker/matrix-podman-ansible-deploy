@@ -23,7 +23,7 @@
 - name: Ensure ma1sd image is pulled
   podman_image:
     name: "{{ matrix_ma1sd_podman_image }}"
-    source: "{{ 'pull' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
+    pull: "{{ 'yes' if ansible_version.major > 2 or ansible_version.minor > 7 else omit }}"
     # force_source#: "{{ matrix_ma1sd_podman_image_force_pull if ansible_version.major > 2 or ansible_version.minor >= 8 else omit }}"
     force: "{{ omit if ansible_version.major > 2 or ansible_version.minor >= 8 else matrix_ma1sd_podman_image_force_pull }}"
   when: matrix_ma1sd_enabled|bool and not matrix_ma1sd_container_image_self_build
