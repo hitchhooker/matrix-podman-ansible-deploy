@@ -93,7 +93,7 @@
 # to produce a final registration.yaml file, as we desire.
 - name: Generate Appservice IRC registration-template.yaml
   shell: >-
-    /usr/bin/docker run --rm --name matrix-appservice-irc-gen
+    /usr/bin/podman run --rm --name matrix-appservice-irc-gen
     --user={{ matrix_user_uid }}:{{ matrix_user_gid }}
     --cap-drop=ALL
     -v {{ matrix_appservice_irc_config_path }}:/config:z

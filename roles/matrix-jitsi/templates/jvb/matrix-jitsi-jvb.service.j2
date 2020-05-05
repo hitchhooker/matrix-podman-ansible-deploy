@@ -8,10 +8,10 @@ After={{ service }}
 
 [Service]
 Type=simple
-ExecStartPre=-/usr/bin/docker kill matrix-jitsi-jvb
-ExecStartPre=-/usr/bin/docker rm matrix-jitsi-jvb
+ExecStartPre=-/usr/bin/podman kill matrix-jitsi-jvb
+ExecStartPre=-/usr/bin/podman rm matrix-jitsi-jvb
 
-ExecStart=/usr/bin/docker run --rm --name matrix-jitsi-jvb \
+ExecStart=/usr/bin/podman run --rm --name matrix-jitsi-jvb \
 			--log-driver=none \
 			--network={{ matrix_docker_network }} \
 			--env-file={{ matrix_jitsi_jvb_base_path }}/env \
@@ -27,8 +27,8 @@ ExecStart=/usr/bin/docker run --rm --name matrix-jitsi-jvb \
 			{% endfor %}
 			{{ matrix_jitsi_jvb_podman_image }}
 
-ExecStop=-/usr/bin/docker kill matrix-jitsi-jvb
-ExecStop=-/usr/bin/docker rm matrix-jitsi-jvb
+ExecStop=-/usr/bin/podman kill matrix-jitsi-jvb
+ExecStop=-/usr/bin/podman rm matrix-jitsi-jvb
 Restart=always
 RestartSec=30
 SyslogIdentifier=matrix-jitsi-jvb
