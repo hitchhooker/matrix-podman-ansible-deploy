@@ -34,7 +34,7 @@
 - name: Ensure Coturn Docker image is built
   podman_image:
     name: "{{ matrix_coturn_podman_image }}"
-    source: build
+    # source: build
     build:
       dockerfile: Dockerfile
       path: "{{ matrix_coturn_docker_src_files_path }}"

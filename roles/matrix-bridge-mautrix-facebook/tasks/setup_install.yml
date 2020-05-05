@@ -42,7 +42,7 @@
 - name: Ensure Mautrix Facebook Docker image is built
   podman_image:
     name: "{{ matrix_mautrix_facebook_podman_image }}"
-    source: build
+    # source: build
     # force_source#: yes
     build:
       dockerfile: Dockerfile

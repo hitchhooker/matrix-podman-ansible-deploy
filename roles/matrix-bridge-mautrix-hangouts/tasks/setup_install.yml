@@ -41,7 +41,7 @@
 - name: Ensure Mautrix Hangouts Docker image is built
   podman_image:
     name: "{{ matrix_mautrix_hangouts_podman_image }}"
-    source: build
+    # source: build
     # force_source#: yes
     build:
       dockerfile: Dockerfile

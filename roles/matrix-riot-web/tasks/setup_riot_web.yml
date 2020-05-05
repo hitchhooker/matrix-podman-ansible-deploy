@@ -35,7 +35,7 @@
 - name: Ensure Riot Web Docker image is built
   podman_image:
     name: "{{ matrix_riot_web_podman_image }}"
-    source: build
+    # source: build
     build:
       dockerfile: Dockerfile
       path: "{{ matrix_riot_web_docker_src_files_path }}"
