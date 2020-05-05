@@ -1,6 +1,6 @@
 ---
 
-- name: Ensure Docker repository is enabled
+- name: Ensure podman repository is enabled
   template:
     src: "{{ role_path }}/files/yum.repos.d/{{ item }}"
     dest: "/etc/yum.repos.d/{{ item }}"
@@ -8,14 +8,14 @@
     group: "root"
     mode: 0644
   with_items:
-    - docker-ce.repo
-  when: matrix_docker_installation_enabled|bool and matrix_docker_package_name == 'docker-ce'
+    - podman.repo
+  when: matrix_podman_installation_enabled|bool and matrix_podman_package_name == 'podman'
 
-- name: Ensure Docker's RPM key is trusted
-  rpm_key:
-    state: present
-    key: https://download.docker.com/linux/centos/gpg
-  when: matrix_docker_installation_enabled|bool and matrix_docker_package_name == 'docker-ce'
+#- name: Ensure podman's RPM key is trusted
+#  rpm_key:
+#    state: present
+#    key: https://download.podman.com/linux/centos/gpg
+#  when: matrix_podman_installation_enabled|bool and matrix_podman_package_name == 'podman'
 
 - name: Ensure yum packages are installed
   yum:
@@ -25,10 +25,10 @@
     state: latest
     update_cache: yes
 
-- name: Ensure Docker is installed
+- name: Ensure podman is installed
   yum:
     name:
-      - "{{ matrix_docker_package_name }}"
-      - docker-python
+      - "{{ matrix_podman_package_name }}"
+      - podman
     state: latest
-  when: matrix_docker_installation_enabled|bool
+  when: matrix_podman_installation_enabled|bool

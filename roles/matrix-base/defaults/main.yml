@@ -64,8 +64,8 @@ matrix_well_known_matrix_server_enabled: true
 matrix_docker_installation_enabled: true
 
 # Controls the Docker package that is installed.
-# Possible values are "docker-ce" (default) and "docker.io" (Debian).
-matrix_docker_package_name: docker-ce
+# Possible values are "podman" (default) and "docker.io" (Debian).
+matrix_docker_package_name: podman
 
 # Variables to Control which parts of our roles run.
 run_postgres_import: true
