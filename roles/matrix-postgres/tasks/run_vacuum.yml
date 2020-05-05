@@ -48,7 +48,7 @@
       /usr/bin/podman run --rm --name matrix-postgres-synapse-vacuum
       --user={{ matrix_user_uid }}:{{ matrix_user_gid }}
       --cap-drop=ALL
-      --network={{ matrix_docker_network }}
+      --network={{ matrix_podman_network }}
       --env-file={{ matrix_postgres_base_path }}/env-postgres-psql
       {{ matrix_postgres_podman_image_latest }}
       psql -v ON_ERROR_STOP=1 -h matrix-postgres {{ matrix_synapse_database_database }} -c 'VACUUM FULL VERBOSE'

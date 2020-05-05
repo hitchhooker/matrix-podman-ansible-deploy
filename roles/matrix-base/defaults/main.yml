@@ -49,7 +49,7 @@ matrix_integration_manager_ui_url: ~
 matrix_riot_jitsi_preferredDomain: ''
 
 # The Docker network that all services would be put into
-matrix_docker_network: "matrix"
+matrix_podman_network: "matrix"
 
 # Controls whether a `/.well-known/matrix/server` file is generated and used at all.
 #

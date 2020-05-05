@@ -29,7 +29,7 @@ ExecStart=/usr/bin/podman run --rm --name matrix-mautrix-telegram \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
-			--network={{ matrix_docker_network }} \
+			--network={{ matrix_podman_network }} \
 			{% if matrix_mautrix_telegram_container_http_host_bind_port %}
 			-p {{ matrix_mautrix_telegram_container_http_host_bind_port }}:8080 \
 			{% endif %}

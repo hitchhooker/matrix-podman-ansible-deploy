@@ -69,7 +69,7 @@
       /usr/bin/podman run --rm --name matrix-postgres-synapse-janitor
       --user={{ matrix_user_uid }}:{{ matrix_user_gid }}
       --cap-drop=ALL
-      --network={{ matrix_docker_network }}
+      --network={{ matrix_podman_network }}
       --env-file={{ matrix_postgres_base_path }}/env-postgres-psql
       --mount type=bind,src={{ postgres_synapse_janitor_tool_path }},dst=/synapse_janitor.sql,ro=true
       {{ matrix_postgres_podman_image_latest }}

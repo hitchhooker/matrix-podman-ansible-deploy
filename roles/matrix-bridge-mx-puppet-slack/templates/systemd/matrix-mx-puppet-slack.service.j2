@@ -21,7 +21,7 @@ ExecStart=/usr/bin/podman run --rm --name matrix-mx-puppet-slack \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
-			--network={{ matrix_docker_network }} \
+			--network={{ matrix_podman_network }} \
 			-e CONFIG_PATH=/config/config.yaml \
 			-e REGISTRATION_PATH=/config/registration.yaml \
 			-v {{ matrix_mx_puppet_slack_config_path }}:/config:z \

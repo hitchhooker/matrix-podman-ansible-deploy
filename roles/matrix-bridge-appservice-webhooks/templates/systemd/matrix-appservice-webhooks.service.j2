@@ -21,7 +21,7 @@ ExecStart=/usr/bin/podman run --rm --name matrix-appservice-webhooks \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
-			--network={{ matrix_docker_network }} \
+			--network={{ matrix_podman_network }} \
 			{% if matrix_appservice_webhooks_container_http_host_bind_port %}
 			-p {{ matrix_appservice_webhooks_container_http_host_bind_port }}:{{matrix_appservice_webhooks_matrix_port}} \
 			{% endif %}

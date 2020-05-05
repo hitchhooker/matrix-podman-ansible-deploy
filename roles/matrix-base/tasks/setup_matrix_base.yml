@@ -34,7 +34,7 @@
 #
 # - name: Ensure Matrix network is created in Docker
 #   docker_network:
-#     name: "{{ matrix_docker_network }}"
+#     name: "{{ matrix_podman_network }}"
 #     driver: bridge
 
 # check uncommented due podman not supporting --filter

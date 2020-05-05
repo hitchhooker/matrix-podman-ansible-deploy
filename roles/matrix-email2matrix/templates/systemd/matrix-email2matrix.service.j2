@@ -14,7 +14,7 @@ ExecStart=/usr/bin/podman run --rm --name matrix-email2matrix \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
 			--read-only \
-			--network={{ matrix_docker_network }} \
+			--network={{ matrix_podman_network }} \
 			-p {{ matrix_email2matrix_smtp_host_bind_port }}:2525 \
 			--mount type=bind,src={{ matrix_email2matrix_config_dir_path }}/config.json,dst=/config.json,ro \
 			{% for arg in matrix_email2matrix_container_extra_arguments %}

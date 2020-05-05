@@ -29,7 +29,7 @@ ExecStart=/usr/bin/podman run --rm --name matrix-mautrix-hangouts \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
-			--network={{ matrix_docker_network }} \
+			--network={{ matrix_podman_network }} \
 			-v {{ matrix_mautrix_hangouts_config_path }}:/config:z \
 			-v {{ matrix_mautrix_hangouts_data_path }}:/data:z \
 			{% for arg in matrix_mautrix_hangouts_container_extra_arguments %}

@@ -22,7 +22,7 @@ ExecStart=/usr/bin/podman run --rm --name matrix-ma1sd \
 			--cap-drop=ALL \
 			--read-only \
 			--tmpfs=/tmp:rw,exec,nosuid,size=10m \
-			--network={{ matrix_docker_network }} \
+			--network={{ matrix_podman_network }} \
 			{% if matrix_ma1sd_container_http_host_bind_port %}
 			-p {{ matrix_ma1sd_container_http_host_bind_port }}:8090 \
 			{% endif %}

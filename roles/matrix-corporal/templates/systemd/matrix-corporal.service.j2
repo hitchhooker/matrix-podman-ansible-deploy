@@ -16,7 +16,7 @@ ExecStart=/usr/bin/podman run --rm --name matrix-corporal \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
 			--read-only \
-			--network={{ matrix_docker_network }} \
+			--network={{ matrix_podman_network }} \
 			{% if matrix_corporal_container_http_gateway_host_bind_port %}
 			-p {{ matrix_corporal_container_http_gateway_host_bind_port }}:41080 \
 			{% endif %}

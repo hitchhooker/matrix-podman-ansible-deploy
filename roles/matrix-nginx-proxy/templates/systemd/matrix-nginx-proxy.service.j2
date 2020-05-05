@@ -20,7 +20,7 @@ ExecStart=/usr/bin/podman run --rm --name matrix-nginx-proxy \
 			--cap-drop=ALL \
 			--read-only \
 			--tmpfs=/tmp:rw,noexec,nosuid,size={{ matrix_nginx_proxy_tmp_directory_size_mb }}m \
-			--network={{ matrix_docker_network }} \
+			--network={{ matrix_podman_network }} \
 			{% if matrix_nginx_proxy_container_http_host_bind_port %}
 			-p {{ matrix_nginx_proxy_container_http_host_bind_port }}:8080 \
 			{% endif %}

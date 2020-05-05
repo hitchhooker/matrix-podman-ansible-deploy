@@ -7,6 +7,6 @@ docker run \
 	--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 	--cap-drop=ALL \
 	--env-file={{ matrix_postgres_base_path }}/env-postgres-psql \
-	--network {{ matrix_docker_network }} \
+	--network {{ matrix_podman_network }} \
 	{{ matrix_postgres_podman_image_to_use }} \
 	psql -h {{ matrix_postgres_connection_hostname }}
