@@ -40,11 +40,11 @@
 - name: Ensure MX Puppet Slack Docker image is built
   podman_image:
     name: "{{ matrix_mx_puppet_slack_podman_image }}"
-    # source: build
+    path: "{{ matrix_mx_puppet_slack_podman_src_files_path }}"
+    pull: yes
     build:
-      dockerfile: Dockerfile
-      path: "{{ matrix_mx_puppet_slack_podman_src_files_path }}"
-      pull: yes
+      format: docker
+      
   when: "matrix_mx_puppet_slack_enabled|bool and matrix_mx_puppet_slack_container_image_self_build"
 
 - name: Check if an old database file already exists
