@@ -15,7 +15,7 @@ matrix_coturn_podman_image_force_pull: "{{ matrix_coturn_podman_image.endswith('
 matrix_coturn_docker_network: "matrix-coturn"
 
 matrix_coturn_base_path: "{{ matrix_base_data_path }}/coturn"
-matrix_coturn_podman_src_files_path: "{{ matrix_coturn_base_path }}/docker-src"
+matrix_coturn_podman_src_files_path: "{{ matrix_coturn_base_path }}/podman-src"
 matrix_coturn_config_path: "{{ matrix_coturn_base_path }}/turnserver.conf"
 
 # List of systemd services that matrix-coturn.service depends on
