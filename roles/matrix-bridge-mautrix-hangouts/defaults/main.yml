@@ -12,7 +12,7 @@ matrix_mautrix_hangouts_podman_image_force_pull: "{{ matrix_mautrix_hangouts_pod
 matrix_mautrix_hangouts_base_path: "{{ matrix_base_data_path }}/mautrix-hangouts"
 matrix_mautrix_hangouts_config_path: "{{ matrix_mautrix_hangouts_base_path }}/config"
 matrix_mautrix_hangouts_data_path: "{{ matrix_mautrix_hangouts_base_path }}/data"
-matrix_mautrix_hangouts_docker_src_files_path: "{{ matrix_mautrix_hangouts_base_path }}/docker-src"
+matrix_mautrix_hangouts_podman_src_files_path: "{{ matrix_mautrix_hangouts_base_path }}/docker-src"
 
 matrix_mautrix_hangouts_public_endpoint: '/mautrix-hangouts'
 

@@ -11,7 +11,7 @@ matrix_mx_puppet_skype_podman_image_force_pull: "{{ matrix_mx_puppet_skype_podma
 matrix_mx_puppet_skype_base_path: "{{ matrix_base_data_path }}/mx-puppet-skype"
 matrix_mx_puppet_skype_config_path: "{{ matrix_mx_puppet_skype_base_path }}/config"
 matrix_mx_puppet_skype_data_path: "{{ matrix_mx_puppet_skype_base_path }}/data"
-matrix_mx_puppet_skype_docker_src_files_path: "{{ matrix_mx_puppet_skype_base_path }}/docker-src"
+matrix_mx_puppet_skype_podman_src_files_path: "{{ matrix_mx_puppet_skype_base_path }}/docker-src"
 
 matrix_mx_puppet_skype_appservice_port: "8438"
 

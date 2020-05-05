@@ -6,7 +6,7 @@ if [ "$(id -u)" != "0" ]; then
 	exit 1
 fi
 
-echo "WARNING! You are about to remove everything the playbook installs for {{ matrix_server_fqn_matrix }}: matrix, docker images,..."
+echo "WARNING! You are about to remove everything the playbook installs for {{ matrix_server_fqn_matrix }}: matrix, podman images,..."
 echo -n "If you're sure you want to do this, type: 'Yes, I really want to remove everything!'"
 read sure
 
@@ -24,10 +24,10 @@ else
 	find /etc/cron.d/ -name "matrix-*" -delete
 	echo "Remove matrix scripts"
 	find {{ matrix_local_bin_path }}/ -name "matrix-*" -delete
-	echo "Remove every docker images"
-	docker rmi $(docker images -aq)
-	echo "Remove docker matrix network"
-	docker network rm {{ matrix_podman_network }}
+	echo "Remove every podman images"
+	podman rmi $(podman images -aq)
+	echo "Remove podman matrix network"
+	podman network rm {{ matrix_podman_network }}
 	echo "Remove {{ matrix_base_data_path }} directory"
 	rm -fr "{{ matrix_base_data_path }}"
 	exit 0

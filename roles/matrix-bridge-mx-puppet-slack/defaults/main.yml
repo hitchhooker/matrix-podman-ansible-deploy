@@ -11,7 +11,7 @@ matrix_mx_puppet_slack_podman_image_force_pull: "{{ matrix_mx_puppet_slack_podma
 matrix_mx_puppet_slack_base_path: "{{ matrix_base_data_path }}/mx-puppet-slack"
 matrix_mx_puppet_slack_config_path: "{{ matrix_mx_puppet_slack_base_path }}/config"
 matrix_mx_puppet_slack_data_path: "{{ matrix_mx_puppet_slack_base_path }}/data"
-matrix_mx_puppet_slack_docker_src_files_path: "{{ matrix_mx_puppet_slack_base_path }}/docker-src"
+matrix_mx_puppet_slack_podman_src_files_path: "{{ matrix_mx_puppet_slack_base_path }}/docker-src"
 
 matrix_mx_puppet_slack_appservice_port: "8432"
 

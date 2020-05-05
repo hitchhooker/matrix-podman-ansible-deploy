@@ -27,13 +27,13 @@
     - { path: "{{ matrix_mx_puppet_slack_base_path }}", when: true }
     - { path: "{{ matrix_mx_puppet_slack_config_path }}", when: true }
     - { path: "{{ matrix_mx_puppet_slack_data_path }}", when: true }
-    - { path: "{{ matrix_mx_puppet_slack_docker_src_files_path }}", when: "{{ matrix_mx_puppet_slack_container_image_self_build }}" }
+    - { path: "{{ matrix_mx_puppet_slack_podman_src_files_path }}", when: "{{ matrix_mx_puppet_slack_container_image_self_build }}" }
   when: matrix_mx_puppet_slack_enabled|bool and item.when|bool
 
 - name: Ensure MX Puppet Slack repository is present on self build
   git:
     repo: https://github.com/Sorunome/mx-puppet-slack.git
-    dest: "{{ matrix_mx_puppet_slack_docker_src_files_path }}"
+    dest: "{{ matrix_mx_puppet_slack_podman_src_files_path }}"
     force: "yes"
   when: "matrix_mx_puppet_slack_enabled|bool and matrix_mx_puppet_slack_container_image_self_build"
 
@@ -43,7 +43,7 @@
     # source: build
     build:
       dockerfile: Dockerfile
-      path: "{{ matrix_mx_puppet_slack_docker_src_files_path }}"
+      path: "{{ matrix_mx_puppet_slack_podman_src_files_path }}"
       pull: yes
   when: "matrix_mx_puppet_slack_enabled|bool and matrix_mx_puppet_slack_container_image_self_build"
 

@@ -27,13 +27,13 @@
     - { path: "{{ matrix_mautrix_hangouts_base_path }}", when: true }
     - { path: "{{ matrix_mautrix_hangouts_config_path }}", when: true }
     - { path: "{{ matrix_mautrix_hangouts_data_path }}", when: true }
-    - { path: "{{ matrix_mautrix_hangouts_docker_src_files_path }}", when: "{{ matrix_mautrix_hangouts_container_image_self_build }}" }
+    - { path: "{{ matrix_mautrix_hangouts_podman_src_files_path }}", when: "{{ matrix_mautrix_hangouts_container_image_self_build }}" }
   when: matrix_mautrix_hangouts_enabled|bool and item.when|bool
 
 - name: Ensure Mautrix Hangots repository is present on self build
   git:
     repo: https://github.com/tulir/mautrix-hangouts.git
-    dest: "{{ matrix_mautrix_hangouts_docker_src_files_path }}"
+    dest: "{{ matrix_mautrix_hangouts_podman_src_files_path }}"
     force: "yes"
   register: matrix_mautrix_hangouts_git_pull_results
   when: "matrix_mautrix_hangouts_enabled|bool and matrix_mautrix_hangouts_container_image_self_build"
@@ -45,7 +45,7 @@
     # force_source#: yes
     build:
       dockerfile: Dockerfile
-      path: "{{ matrix_mautrix_hangouts_docker_src_files_path }}"
+      path: "{{ matrix_mautrix_hangouts_podman_src_files_path }}"
       pull: yes
   when: "matrix_mautrix_hangouts_enabled|bool and matrix_mautrix_hangouts_container_image_self_build and matrix_mautrix_hangouts_git_pull_results.changed"
 

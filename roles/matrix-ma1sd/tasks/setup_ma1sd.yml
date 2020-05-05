@@ -14,7 +14,7 @@
   with_items:
     - { path: "{{ matrix_ma1sd_config_path }}", when: true }
     - { path: "{{ matrix_ma1sd_data_path }}", when: true }
-    - { path: "{{ matrix_ma1sd_docker_src_files_path }}", when: "{{ matrix_ma1sd_container_image_self_build }}"}
+    - { path: "{{ matrix_ma1sd_podman_src_files_path }}", when: "{{ matrix_ma1sd_container_image_self_build }}"}
   when: matrix_ma1sd_enabled|bool and item.when
 
 - import_tasks: "{{ role_path }}/tasks/migrate_mxisd.yml"
@@ -53,14 +53,14 @@
   - name: Ensure ma1sd repository is present on self-build
     git:
       repo: https://github.com/ma1uta/ma1sd.git
-      dest: "{{ matrix_ma1sd_docker_src_files_path }}"
+      dest: "{{ matrix_ma1sd_podman_src_files_path }}"
       version: "v{{ matrix_ma1sd_podman_image.split(':')[1] }}"
       force: "yes"
 
   - name: Ensure ma1sd Docker image is built
     shell: "./gradlew dockerBuild"
     args:
-      chdir: "{{ matrix_ma1sd_docker_src_files_path }}"
+      chdir: "{{ matrix_ma1sd_podman_src_files_path }}"
   when: "matrix_ma1sd_enabled|bool and matrix_ma1sd_container_image_self_build"
 
 - name: Ensure ma1sd config installed
