@@ -12,9 +12,9 @@
 - include_tasks: "{{ role_path }}/tasks/server_base/setup_archlinux.yml"
   when: ansible_distribution == 'Archlinux'
 
-- name: Ensure Docker is started and autoruns
+- name: Ensure podman is started and autoruns
   service:
-    name: docker
+    name: podman
     state: started
     enabled: yes
 
