@@ -26,7 +26,7 @@ matrix_appservice_discord_container_http_host_bind_port: ''
 matrix_appservice_discord_container_extra_arguments: []
 
 # List of systemd services that matrix-appservice-discord.service depends on.
-matrix_appservice_discord_systemd_required_services_list: ['']
+matrix_appservice_discord_systemd_required_services_list: []
 
 # List of systemd services that matrix-appservice-discord.service wants
 matrix_appservice_discord_systemd_wanted_services_list: []
