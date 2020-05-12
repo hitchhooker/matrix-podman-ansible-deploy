@@ -49,7 +49,7 @@
 - name: Create Matrix network in podman
   shell:
     cmd: "podman network create --driver=bridge {{ matrix_podman_network }}"
-  when: "result_check_podman_network.stdout == '' and not ansible_check_mode"
+#  when: "result_check_podman_network.stdout == '' and not ansible_check_mode"
 
 - name: Ensure matrix-remove-all script created
   template:
