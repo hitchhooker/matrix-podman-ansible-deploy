@@ -19,7 +19,7 @@ matrix_mautrix_whatsapp_appservice_address: "http://matrix-mautrix-whatsapp:8080
 matrix_mautrix_whatsapp_container_extra_arguments: []
 
 # List of systemd services that matrix-mautrix-whatsapp.service depends on.
-matrix_mautrix_whatsapp_systemd_required_services_list: ['podman.service']
+matrix_mautrix_whatsapp_systemd_required_services_list: []
 
 # List of systemd services that matrix-mautrix-whatsapp.service wants
 matrix_mautrix_whatsapp_systemd_wanted_services_list: []

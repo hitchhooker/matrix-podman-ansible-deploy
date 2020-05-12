@@ -17,7 +17,7 @@ matrix_corporal_container_http_api_host_bind_port: ''
 matrix_corporal_container_extra_arguments: []
 
 # List of systemd services that matrix-corporal.service depends on
-matrix_corporal_systemd_required_services_list: ['podman.service']
+matrix_corporal_systemd_required_services_list: []
 
 matrix_corporal_podman_image: "devture/matrix-corporal:1.9.0"
 matrix_corporal_podman_image_force_pull: "{{ matrix_corporal_podman_image.endswith(':latest') }}"
