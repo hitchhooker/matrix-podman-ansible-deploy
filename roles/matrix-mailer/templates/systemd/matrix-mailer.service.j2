@@ -6,10 +6,10 @@ Requires=podman.service
 
 [Service]
 Type=simple
-ExecStartPre=-/usr/bin/podman kill matrix-mailer
-ExecStartPre=-/usr/bin/podman rm matrix-mailer
+ExecStartPre=podman kill matrix-mailer
+ExecStartPre=podman rm matrix-mailer
 
-ExecStart=/usr/bin/podman run --rm --name matrix-mailer \
+ExecStart=podman run --rm --name matrix-mailer \
 			--log-driver=none \
 			--user={{ matrix_mailer_container_user_uid }}:{{ matrix_mailer_container_user_gid }} \
 			--cap-drop=ALL \
@@ -24,8 +24,8 @@ ExecStart=/usr/bin/podman run --rm --name matrix-mailer \
 			{% endfor %}
 			{{ matrix_mailer_podman_image }}
 
-ExecStop=-/usr/bin/podman kill matrix-mailer
-ExecStop=-/usr/bin/podman rm matrix-mailer
+ExecStop=podman kill matrix-mailer
+ExecStop=podman rm matrix-mailer
 Restart=always
 RestartSec=30
 SyslogIdentifier=matrix-mailer

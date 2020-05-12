@@ -6,10 +6,10 @@ Requires=podman.service
 
 [Service]
 Type=simple
-ExecStartPre=-/usr/bin/podman stop matrix-postgres
-ExecStartPre=-/usr/bin/podman rm matrix-postgres
+ExecStartPre=podman stop matrix-postgres
+ExecStartPre=podman rm matrix-postgres
 
-ExecStart=/usr/bin/podman run --rm --name matrix-postgres \
+ExecStart=podman run --rm --name matrix-postgres \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
@@ -28,8 +28,8 @@ ExecStart=/usr/bin/podman run --rm --name matrix-postgres \
 			{% endfor %}
 			{{ matrix_postgres_podman_image_to_use }}
 
-ExecStop=-/usr/bin/podman stop matrix-postgres
-ExecStop=-/usr/bin/podman rm matrix-postgres
+ExecStop=podman stop matrix-postgres
+ExecStop=podman rm matrix-postgres
 Restart=always
 RestartSec=30
 SyslogIdentifier=matrix-postgres

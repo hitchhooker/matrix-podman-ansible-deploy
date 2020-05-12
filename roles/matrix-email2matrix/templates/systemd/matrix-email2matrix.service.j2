@@ -6,10 +6,10 @@ Requires=podman.service
 
 [Service]
 Type=simple
-ExecStartPre=-/usr/bin/podman kill matrix-email2matrix
-ExecStartPre=-/usr/bin/podman rm matrix-email2matrix
+ExecStartPre=podman kill matrix-email2matrix
+ExecStartPre=podman rm matrix-email2matrix
 
-ExecStart=/usr/bin/podman run --rm --name matrix-email2matrix \
+ExecStart=podman run --rm --name matrix-email2matrix \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
@@ -22,8 +22,8 @@ ExecStart=/usr/bin/podman run --rm --name matrix-email2matrix \
 			{% endfor %}
 			{{ matrix_email2matrix_podman_image }}
 
-ExecStop=-/usr/bin/podman kill matrix-email2matrix
-ExecStop=-/usr/bin/podman rm matrix-email2matrix
+ExecStop=podman kill matrix-email2matrix
+ExecStop=podman rm matrix-email2matrix
 Restart=always
 RestartSec=30
 SyslogIdentifier=matrix-email2matrix

@@ -11,8 +11,8 @@ Wants={{ service }}
 
 [Service]
 Type=simple
-ExecStartPre=-/usr/bin/podman kill matrix-synapse
-ExecStartPre=-/usr/bin/podman rm matrix-synapse
+ExecStartPre=podman kill matrix-synapse
+ExecStartPre=podman rm matrix-synapse
 {% if matrix_s3_media_store_enabled %}
 # Allow for some time before starting, so that media store can mount.
 # Mounting can happen later too, but if we start writing,
@@ -20,7 +20,7 @@ ExecStartPre=-/usr/bin/podman rm matrix-synapse
 ExecStartPre=/bin/sleep 3
 {% endif %}
 
-ExecStart=/usr/bin/podman run --rm --name matrix-synapse \
+ExecStart=podman --name matrix-synapse \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
@@ -56,9 +56,9 @@ ExecStart=/usr/bin/podman run --rm --name matrix-synapse \
 			{{ matrix_synapse_podman_image }} \
 			-m synapse.app.homeserver -c /data/homeserver.yaml
 
-ExecStop=-/usr/bin/podman kill matrix-synapse
-ExecStop=-/usr/bin/podman rm matrix-synapse
-ExecReload=/usr/bin/podman exec matrix-synapse kill -HUP 1
+ExecStop=podman matrix-synapse
+ExecStop=podman matrix-synapse
+ExecReload=podman matrix-synapse kill -HUP 1
 Restart=always
 RestartSec=30
 SyslogIdentifier=matrix-synapse

@@ -8,10 +8,10 @@ After={{ service }}
 
 [Service]
 Type=simple
-ExecStartPre=-/usr/bin/podman kill matrix-corporal
-ExecStartPre=-/usr/bin/podman rm matrix-corporal
+ExecStartPre=podman kill matrix-corporal
+ExecStartPre=podman rm matrix-corporal
 
-ExecStart=/usr/bin/podman run --rm --name matrix-corporal \
+ExecStart=podman run --rm --name matrix-corporal \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
@@ -32,8 +32,8 @@ ExecStart=/usr/bin/podman run --rm --name matrix-corporal \
 			{{ matrix_corporal_podman_image }} \
 			/matrix-corporal -config=/etc/matrix-corporal/config.json
 
-ExecStop=-/usr/bin/podman kill matrix-corporal
-ExecStop=-/usr/bin/podman rm matrix-corporal
+ExecStop=podman kill matrix-corporal
+ExecStop=podman rm matrix-corporal
 Restart=always
 RestartSec=30
 SyslogIdentifier=matrix-corporal

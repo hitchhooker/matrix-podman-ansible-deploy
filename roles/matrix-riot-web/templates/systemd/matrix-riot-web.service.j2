@@ -8,10 +8,10 @@ After={{ service }}
 
 [Service]
 Type=simple
-ExecStartPre=-/usr/bin/podman kill matrix-riot-web
-ExecStartPre=-/usr/bin/podman rm matrix-riot-web
+ExecStartPre=podman kill matrix-riot-web
+ExecStartPre=podman rm matrix-riot-web
 
-ExecStart=/usr/bin/podman run --rm --name matrix-riot-web \
+ExecStart=podman run --rm --name matrix-riot-web \
 			--log-driver=none \
 			--user={{ matrix_user_uid }}:{{ matrix_user_gid }} \
 			--cap-drop=ALL \
@@ -33,8 +33,8 @@ ExecStart=/usr/bin/podman run --rm --name matrix-riot-web \
 			{% endfor %}
 			{{ matrix_riot_web_podman_image }}
 
-ExecStop=-/usr/bin/podman kill matrix-riot-web
-ExecStop=-/usr/bin/podman rm matrix-riot-web
+ExecStop=podman kill matrix-riot-web
+ExecStop=podman rm matrix-riot-web
 Restart=always
 RestartSec=30
 SyslogIdentifier=matrix-riot-web
