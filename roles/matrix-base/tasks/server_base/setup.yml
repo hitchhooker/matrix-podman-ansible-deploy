@@ -12,11 +12,13 @@
 - include_tasks: "{{ role_path }}/tasks/server_base/setup_archlinux.yml"
   when: ansible_distribution == 'Archlinux'
 
-- name: Ensure podman is started and autoruns
-  service:
-    name: podman
-    state: started
-    enabled: yes
+#podman is daemonless
+
+#- name: Ensure podman is started and autoruns
+#  service:
+#    name: podman
+#    state: started
+#    enabled: yes
 
 - name: "Ensure {{ matrix_ntpd_service }} is started and autoruns"
   service:
