@@ -96,6 +96,7 @@
     podman run --rm --name matrix-appservice-irc-gen
     --user={{ matrix_user_uid }}:{{ matrix_user_gid }}
     --cap-drop=ALL
+    --network={{ matrix_podman_network }}
     -v {{ matrix_appservice_irc_config_path }}:/config:z
     -v {{ matrix_appservice_irc_data_path }}:/data:z
     --entrypoint=/bin/bash
